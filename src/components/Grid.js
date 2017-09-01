@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import './../App.css';
 
 class Grid extends Component {
@@ -11,6 +12,29 @@ class Grid extends Component {
       }
     }
 
+  onGenerate(e){
+    let wvalue = this.refs.widthcontroller.value;
+    let hvalue = this.refs.heightcontroller.value;
+
+    if(!_.isEmpty(wvalue)){
+      this.setState(prevState =>{
+        prevState.numWidth = wvalue;
+
+        return prevState;
+      });
+    }
+
+    if(!_.isEmpty(hvalue)){
+      this.setState(prevState =>{
+        prevState.numHeight = hvalue;
+
+        return prevState;
+      });
+    }
+
+    console.log(this.state.numHeight);
+  }
+
   generateSquares(){
     return(
       <div className="main-grid">
@@ -22,13 +46,13 @@ class Grid extends Component {
     return (
       <div className="grid">
         <div className="grid-setup">
-          <p className="grid-controllers">
-            <label for="width-controller">Width </label>
-            <input type="text" name="width-controller" id="width-controller" />
-            <label for="height-controller">Height </label>
-            <input type="text" name="height-controller" id="height-controller" />
-            <button type="button" name="controller-generate" id="controller-generate">MAKE GRID</button>
-          </p>
+          <div className="grid-controllers">
+            <label htmlFor="width-controller">Width </label>
+            <input type="text" name="width-controller" ref="widthcontroller" id="width-controller" />
+            <label htmlFor="height-controller">Height </label>
+            <input type="text" name="height-controller" ref="heightcontroller"  id="height-controller" />
+            <button type="button" name="controller-generate" id="controller-generate" onClick={(...args) => this.onGenerate(...args)}>MAKE GRID</button>
+          </div>
           <div className="grid-setup">
             {this.generateSquares()}
           </div>

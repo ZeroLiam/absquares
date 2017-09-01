@@ -14,10 +14,7 @@ class App extends Component {
         <p className="App-intro">
           Define the size of your grid, then click on the squares you want to fill with your favorite color.
         </p>
-
-        <p>
           <Grid />
-        </p>
 
         <p>
           Once you are done save your grid as an image.
