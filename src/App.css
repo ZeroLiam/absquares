@@ -35,6 +35,7 @@ p {
 }
 
 .grid-controllers{
+  font-family: 'Sue Ellen Francisco', cursive;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -42,29 +43,75 @@ p {
   height: 250px;
 }
 
+.grid-controllers label{
+    font-size: 1.8em;
+}
+
 .main-grid{
   border: 1px solid #555;
-  padding: 10px;
+  padding: 15px 14px;
+  width: auto;
+  height: auto;
+}
+
+.rowx{
+  display: flex;
+}
+
+.colx{
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-style: solid;
+  border-top-width: 0px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+  border-left-width: 0px;
+  border-color: #555;
+  text-align: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+.colx:first-child{
+  border-left-width: 1px;
+}
+.rowx:first-child .colx{
+  border-top-width: 1px;
+}
+
+#controller-generate, #controller-delete{
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 14px 18px 45px;
+  margin: 8px 64px;
+  font-size: 1.2em;
+  font-family: 'Sue Ellen Francisco', cursive;
 }
 
 #controller-generate{
-  border-radius: 4px;
   border: 2px solid #00aabb;
-  cursor: pointer;
-  padding: 12px 8px 56px;
-  margin: 8px;
-  font-size: 0.5em;
-  font-family: 'Sue Ellen Francisco', cursive;
   color: #666;
   background-color: #00ffff;
+}
+
+#controller-delete{
+  border: 2px solid #9a0135;
+  color: #666;
+  background-color: #ff91f1;
 }
 
 label{
   font-size: 0.7em;
 }
 
-.grid input[type="text"]{
+.grid-controllers input[type="number"]{
+  font-size: 1.2em;
+  width: 110px;
   height: 30px;
+  padding: 15px 8px;
+  margin: -8px auto 8px auto;
 }
 
 @keyframes App-logo-spin {
