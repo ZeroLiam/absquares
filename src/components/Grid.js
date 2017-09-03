@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import _ from 'lodash';
+import Square from './Square';
 import './../App.css';
 
 class Grid extends Component {
@@ -10,7 +11,8 @@ class Grid extends Component {
     this.state = {
       numWidth: 0,
       numHeight: 0,
-      showGrid: false
+      showGrid: false,
+      clearGrid: false
     }
 
     this.onChangeWidth = this.onChangeWidth.bind(this);
@@ -59,11 +61,24 @@ class Grid extends Component {
 
   onDelete(e) {
     this.setState({
-      showGrid: false
+      showGrid: false,
+      clearGrid: true
     });
 
     $("#width-controller").val("");
     $("#height-controller").val("");
+  }
+
+  onClear(e) {
+    this.setState({
+      clearGrid: true
+    });
+  }
+
+  onResetFill() {
+    this.setState({
+      clearGrid: false
+    });
   }
 
 
@@ -95,7 +110,7 @@ class Grid extends Component {
                     while (++x <= ln) {
                       let nae = "col-" + x;
 
-                      cols.push( <div id = {nae} key={x} className="colx"></div>);
+                      cols.push( <Square cred={nae} key={x} type="colx" clear={this.state.clearGrid} resetFill={this.onResetFill()} />);
                       }
                       return cols;
                     })([], 0, cn)
@@ -110,21 +125,25 @@ class Grid extends Component {
         render() {
           return (
             <div className="grid">
+
               <div className="grid-setup">
                 <div className="grid-controllers">
                   <label htmlFor="width-controller">Width </label>
                   <input type="number" name="width-controller" id="width-controller" onChange={(...args) => this.onChangeWidth(...args)} />
                   <label htmlFor="height-controller">Height </label>
-                  <input type="number" name="height-controller" id="height-controller"  onChange={(...args) => this.onChangeHeight(...args)}  />
+                  <input type="number" name="height-controller" id="height-controller"  onChange={(...args) => this.onChangeHeight(...args)} />
                   <button type="button" name="controller-generate" id="controller-generate" onClick={(...args) => this.onGenerate(...args)}>MAKE GRID</button>
-                  <button type="button" name="controller-delete" id="controller-delete" onClick={(...args) => this.onDelete(...args)}>CLEAR GRID</button>
+                  <button type="button" name="controller-clear" id="controller-clear" onClick={(...args) => this.onClear(...args)}>CLEAR GRID</button>
+                  <button type="button" name="controller-delete" id="controller-delete" onClick={(...args) => this.onDelete(...args)}>DELETE</button>
                 </div>
+
                 <div className="grid-setup">
                   <div className="main-grid" style={{display: this.state.showGrid ? 'block' : 'none' }}>
                       {this.generateSquares()}
                   </div>
                 </div>
               </div>
+
             </div>
           );
         }
