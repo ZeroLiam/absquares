@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
-import _ from 'lodash';
 import './../App.css';
 
 class Square extends Component {
@@ -8,6 +6,7 @@ class Square extends Component {
     super(props);
 
     this.state = {
+      color: "102, 102, 102,",
       transparency: 0,
       timer: ""
     }
@@ -17,27 +16,48 @@ class Square extends Component {
     this.startPress = this.startPress.bind(this);
   }
 
-  componentWillMount(){
-    if(this.props.clear){
+  componentWillMount() {
+    let getNewColor = this.convertCustomColor(this.props.color);
+    this.setState({color: getNewColor});
+
+    if (this.props.clear) {
       this.setState({transparency: 0});
     }
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearInterval(this.state.timer);
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.clear){
-      this.setState({transparency: 0});
-      console.log("nextProps.clear " + nextProps.clear);
-      // this.props.resetFill;
+    if (nextProps.clear) {
+      this.setState({
+        transparency: 0
+      });
     }
+
+      let getNewColor = this.convertCustomColor(nextProps.color);
+      this.setState({color: getNewColor});
   }
 
-  startPress(){
-    if(this.state.transparency >= 0 && this.state.transparency <= 1){
-      this.setState(prevState =>{
+
+  //To change the hexadecimal input color to RGBA
+  convertCustomColor(value){
+    let components = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value);
+    let customColorR = parseInt(components[1], 16);
+    let customColorG = parseInt(components[2], 16);
+    let customColorB = parseInt(components[3], 16);
+
+    let colorTotal = customColorR + "," + customColorG + "," + customColorB + ",";
+
+    console.log(colorTotal);
+
+    return colorTotal;
+  }
+
+  startPress() {
+    if (this.state.transparency >= 0 && this.state.transparency <= 1) {
+      this.setState(prevState => {
         prevState.transparency += 1 * 0.01;
 
         return prevState;
@@ -45,37 +65,31 @@ class Square extends Component {
     }
   }
 
-  onPressSquare(e){
-    // console.log("Mouse Down");
+  onPressSquare(e) {
     let tim = setInterval(this.startPress, 30);
-    this.setState({timer: tim});
+    this.setState({
+      timer: tim
+    });
 
   }
 
-  onReleaseSquare(e){
-    // console.log("Mouse Up");
+  onReleaseSquare(e) {
     clearInterval(this.state.timer);
     console.log(this.state.transparency);
   }
 
-  isSquareFilled(){
-    let phil;
-    if(this.props.clear){
-      phil = 0;
-    }else{
-      phil = this.state.transparency;
-    }
-
-    let fillstyle = {
-      backgroundColor: "rgba(102, 102, 102,"+ phil +")"
-    }
-
-    return fillstyle;
-  }
-
   render() {
+    let fillstyle = {
+      backgroundColor: "rgba(" + this.state.color + this.state.transparency + ")"
+    }
+
     return (
-      <div style={this.isSquareFilled()} id={this.props.cred} className={this.props.type} onMouseDown={(...args) => this.onPressSquare(...args)} onMouseUp={(...args) => this.onReleaseSquare(...args)} >
+      <div
+        style={fillstyle}
+        id={this.props.cred}
+        className={this.props.type}
+        onMouseDown={(...args) => this.onPressSquare(...args)}
+        onMouseUp={(...args) => this.onReleaseSquare(...args)} >
 
       </div>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import _ from 'lodash';
 import Square from './Square';
+import ColorPicker from './ColorPicker';
 import './../App.css';
 
 class Grid extends Component {
@@ -11,6 +11,7 @@ class Grid extends Component {
     this.state = {
       numWidth: 0,
       numHeight: 0,
+      customcolor: "",
       showGrid: false,
       clearGrid: false
     }
@@ -18,6 +19,11 @@ class Grid extends Component {
     this.onChangeWidth = this.onChangeWidth.bind(this);
     this.onChangeHeight = this.onChangeHeight.bind(this);
     this.onGenerate = this.onGenerate.bind(this);
+    this.onChangeColor = this.onChangeColor.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    console.log(this.state);
   }
 
   onChangeWidth(e) {
@@ -26,7 +32,6 @@ class Grid extends Component {
       this.setState({
         numWidth: wvalue
       });
-      // this.validateSize(wvalue);
     }else{
       this.setState({
         showGrid: false
@@ -40,7 +45,6 @@ class Grid extends Component {
       this.setState({
         numHeight: hvalue
       });
-      // this.validateSize(hvalue);
     }else{
       this.setState({
         showGrid: false
@@ -75,9 +79,9 @@ class Grid extends Component {
     });
   }
 
-  onResetFill() {
+  onChangeColor(e) {
     this.setState({
-      clearGrid: false
+      customcolor: e
     });
   }
 
@@ -110,7 +114,7 @@ class Grid extends Component {
                     while (++x <= ln) {
                       let nae = "col-" + x;
 
-                      cols.push( <Square cred={nae} key={x} type="colx" clear={this.state.clearGrid} resetFill={this.onResetFill()} />);
+                      cols.push( <Square cred={nae} key={x} type="colx" clear={this.state.clearGrid} color={this.state.customcolor} />);
                       }
                       return cols;
                     })([], 0, cn)
@@ -128,10 +132,12 @@ class Grid extends Component {
 
               <div className="grid-setup">
                 <div className="grid-controllers">
+                  <label htmlFor="color-controller">Color </label>
+                  <ColorPicker onDefaultColor={(...args) => this.onChangeColor(...args)} onChange={(...args) => this.onChangeColor(...args)} />
                   <label htmlFor="width-controller">Width </label>
                   <input type="number" name="width-controller" id="width-controller" onChange={(...args) => this.onChangeWidth(...args)} />
                   <label htmlFor="height-controller">Height </label>
-                  <input type="number" name="height-controller" id="height-controller"  onChange={(...args) => this.onChangeHeight(...args)} />
+                  <input type="number" name="height-controller" id="height-controller" onChange={(...args) => this.onChangeHeight(...args)} />
                   <button type="button" name="controller-generate" id="controller-generate" onClick={(...args) => this.onGenerate(...args)}>MAKE GRID</button>
                   <button type="button" name="controller-clear" id="controller-clear" onClick={(...args) => this.onClear(...args)}>CLEAR GRID</button>
                   <button type="button" name="controller-delete" id="controller-delete" onClick={(...args) => this.onDelete(...args)}>DELETE</button>
