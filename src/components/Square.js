@@ -10,7 +10,6 @@ class Square extends Component {
       transparency: 0,
       timer: ""
     }
-
     this.onPressSquare = this.onPressSquare.bind(this);
     this.onReleaseSquare = this.onReleaseSquare.bind(this);
     this.startPress = this.startPress.bind(this);
@@ -50,8 +49,6 @@ class Square extends Component {
 
     let colorTotal = customColorR + "," + customColorG + "," + customColorB + ",";
 
-    console.log(colorTotal);
-
     return colorTotal;
   }
 
@@ -66,7 +63,7 @@ class Square extends Component {
   }
 
   onPressSquare(e) {
-    let tim = setInterval(this.startPress, 30);
+    let tim = setInterval(this.startPress, 15);
     this.setState({
       timer: tim
     });
@@ -75,7 +72,6 @@ class Square extends Component {
 
   onReleaseSquare(e) {
     clearInterval(this.state.timer);
-    console.log(this.state.transparency);
   }
 
   render() {

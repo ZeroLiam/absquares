@@ -22,7 +22,6 @@ class ColorPicker extends Component {
 
   onChangeColor(e){
     let newcolor = e.target.value;
-    console.log(newcolor);
 
     this.setState({colorcode: newcolor});
     this.props.onChange(newcolor);
@@ -42,7 +41,7 @@ class ColorPicker extends Component {
 
     return (
       <div className="color-picker" id="color-picker">
-          <input type="color" name="colorpicker" value={this.state.colorcode} onChange={(...args) => this.onChangeColor(...args)} />
+          <input type="color" name="colorpicker" id="colorpicker" value={this.state.colorcode} onChange={(...args) => this.onChangeColor(...args)} />
       </div>
     );
   }

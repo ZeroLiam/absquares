@@ -22,12 +22,9 @@ class Grid extends Component {
     this.onChangeColor = this.onChangeColor.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState){
-    console.log(this.state);
-  }
-
   onChangeWidth(e) {
     let wvalue = e.target.value;
+
     if(wvalue > 0){
       this.setState({
         numWidth: wvalue
@@ -41,7 +38,7 @@ class Grid extends Component {
 
   onChangeHeight(e) {
     let hvalue = e.target.value;
-    if(hvalue > 0 ){
+    if(hvalue > 0){
       this.setState({
         numHeight: hvalue
       });
@@ -135,9 +132,9 @@ class Grid extends Component {
                   <label htmlFor="color-controller">Color </label>
                   <ColorPicker onDefaultColor={(...args) => this.onChangeColor(...args)} onChange={(...args) => this.onChangeColor(...args)} />
                   <label htmlFor="width-controller">Width </label>
-                  <input type="number" name="width-controller" id="width-controller" onChange={(...args) => this.onChangeWidth(...args)} />
+                  <input type="number" min="1" max="20" name="width-controller" id="width-controller" onChange={(...args) => this.onChangeWidth(...args)} />
                   <label htmlFor="height-controller">Height </label>
-                  <input type="number" name="height-controller" id="height-controller" onChange={(...args) => this.onChangeHeight(...args)} />
+                  <input type="number" min="1" max="20" name="height-controller" id="height-controller" onChange={(...args) => this.onChangeHeight(...args)} />
                   <button type="button" name="controller-generate" id="controller-generate" onClick={(...args) => this.onGenerate(...args)}>MAKE GRID</button>
                   <button type="button" name="controller-clear" id="controller-clear" onClick={(...args) => this.onClear(...args)}>CLEAR GRID</button>
                   <button type="button" name="controller-delete" id="controller-delete" onClick={(...args) => this.onDelete(...args)}>DELETE</button>
