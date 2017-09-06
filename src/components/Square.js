@@ -16,8 +16,8 @@ class Square extends Component {
   }
 
   componentWillMount() {
-    let getNewColor = this.convertCustomColor(this.props.color);
-    this.setState({color: getNewColor});
+    // let getNewColor = this.convertCustomColor(this.props.color);
+    // this.setState({color: getNewColor});
 
     if (this.props.clear) {
       this.setState({transparency: 0});
@@ -35,8 +35,8 @@ class Square extends Component {
       });
     }
 
-      let getNewColor = this.convertCustomColor(nextProps.color);
-      this.setState({color: getNewColor});
+      // let getNewColor = this.convertCustomColor(nextProps.color);
+      // this.setState({color: getNewColor});
   }
 
 
@@ -65,6 +65,7 @@ class Square extends Component {
   onPressSquare(e) {
     let tim = setInterval(this.startPress, 15);
     this.setState({
+      color: this.convertCustomColor(this.props.color),
       timer: tim
     });
 
