@@ -129,24 +129,20 @@ class Grid extends Component {
 
               <div className="grid-setup">
                 <div className="grid-controllers">
-                  <label htmlFor="color-controller">Color </label>
                   <ColorPicker onDefaultColor={(...args) => this.onChangeColor(...args)} onChange={(...args) => this.onChangeColor(...args)} />
-                  <label htmlFor="width-controller">Width </label>
-                  <input type="number" min="1" max="20" name="width-controller" id="width-controller" onChange={(...args) => this.onChangeWidth(...args)} />
-                  <label htmlFor="height-controller">Height </label>
-                  <input type="number" min="1" max="20" name="height-controller" id="height-controller" onChange={(...args) => this.onChangeHeight(...args)} />
+                  <input type="number" min="1" max="20" name="width-controller" id="width-controller" onChange={(...args) => this.onChangeWidth(...args)} placeholder="Width" />
+                  <input type="number" min="1" max="20" name="height-controller" id="height-controller" onChange={(...args) => this.onChangeHeight(...args)} placeholder="Height" />
                   <button type="button" name="controller-generate" id="controller-generate" onClick={(...args) => this.onGenerate(...args)}>MAKE GRID</button>
-                  <button type="button" name="controller-clear" id="controller-clear" onClick={(...args) => this.onClear(...args)}>CLEAR GRID</button>
                   <button type="button" name="controller-delete" id="controller-delete" onClick={(...args) => this.onDelete(...args)}>DELETE</button>
-                </div>
-
-                <div className="grid-setup">
-                  <div className="main-grid" style={{display: this.state.showGrid ? 'block' : 'none' }}>
-                      {this.generateSquares()}
-                  </div>
                 </div>
               </div>
 
+              <div className="grid-setup">
+
+              <div className="main-grid" style={{display: this.state.showGrid ? 'block' : 'none' }}>
+                  {this.generateSquares()}
+              </div>
+              </div>
             </div>
           );
         }

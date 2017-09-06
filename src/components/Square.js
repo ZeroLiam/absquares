@@ -16,8 +16,8 @@ class Square extends Component {
   }
 
   componentWillMount() {
-    // let getNewColor = this.convertCustomColor(this.props.color);
-    // this.setState({color: getNewColor});
+    let getNewColor = this.convertCustomColor(this.props.color);
+    this.setState({color: getNewColor});
 
     if (this.props.clear) {
       this.setState({transparency: 0});

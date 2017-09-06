@@ -37,6 +37,7 @@ p {
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 100%;
   height: auto;
 }
@@ -45,8 +46,6 @@ p {
   font-family: 'Sue Ellen Francisco', cursive;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: row;
 }
 
 .grid-controllers label{
@@ -54,10 +53,9 @@ p {
 }
 
 .grid-controllers #colorpicker{
-  margin-right: 30px;
-  margin-left: 10px;
-  height: 80%;
-  width: 50px;
+  margin: 4px 8px 0px;
+  height: 75%;
+  width: 60px;
 }
 
 .main-grid{
@@ -97,8 +95,9 @@ p {
 #controller-generate, #controller-delete, #controller-clear{
   border-radius: 4px;
   cursor: pointer;
-  padding: 0px 30px;
-  margin: auto 6px;
+  padding: 0px 15px;
+  height: 80%;
+  margin: 4px;
   font-size: 1.2em;
   font-family: 'Sue Ellen Francisco', cursive;
 }
@@ -107,6 +106,7 @@ p {
   border: 2px solid #00aabb;
   color: #666;
   background-color: #00ffff;
+  width: 140px;
 }
 
 #controller-delete{
@@ -119,6 +119,7 @@ p {
   border: 2px solid #FF5722;
   color: #666;
   background-color: #FFC107;
+  width: 140px;
 }
 
 label{
@@ -126,11 +127,11 @@ label{
 }
 
 .grid-controllers input[type="number"]{
-  font-size: 1.2em;
-  width: 60px;
-  height: 22%;
+  font-size: 1.025em;
+  width: 70px;
+  height: 25%;
   padding: 15px 8px;
-  margin: -8px auto 8px auto;
+  margin: 4px 6px;
 }
 
 @keyframes App-logo-spin {
