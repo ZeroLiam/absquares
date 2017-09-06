@@ -92,7 +92,7 @@ p {
   border-top-width: 1px;
 }
 
-#controller-generate, #controller-delete, #controller-clear{
+#controller-generate, #controller-delete, #controller-clear, .controller-clear, .controller-generate{
   border-radius: 4px;
   cursor: pointer;
   padding: 0px 15px;
@@ -102,7 +102,7 @@ p {
   font-family: 'Sue Ellen Francisco', cursive;
 }
 
-#controller-generate{
+.controller-generate{
   border: 2px solid #00aabb;
   color: #666;
   background-color: #00ffff;
@@ -115,7 +115,7 @@ p {
   background-color: #ff91f1;
 }
 
-#controller-clear{
+.controller-clear{
   border: 2px solid #FF5722;
   color: #666;
   background-color: #FFC107;

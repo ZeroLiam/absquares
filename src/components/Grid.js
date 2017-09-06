@@ -12,8 +12,9 @@ class Grid extends Component {
       numWidth: 0,
       numHeight: 0,
       customcolor: "",
+      gridbuttontxt: "MAKE GRID",
       showGrid: false,
-      clearGrid: false
+      clearGrid: true
     }
 
     this.onChangeWidth = this.onChangeWidth.bind(this);
@@ -53,10 +54,18 @@ class Grid extends Component {
     let hvalue = this.state.numHeight;
     let wvalue = this.state.numWidth;
 
-    if (hvalue > 0 && wvalue > 0){
+    if ((hvalue > 0 && wvalue > 0) && this.state.clearGrid){
       this.setState({
-        showGrid: true
+        clearGrid: false,
+        showGrid: true,
+        gridbuttontxt: "CLEAR GRID"
       });
+    }else{
+      this.setState({
+        clearGrid: true,
+        gridbuttontxt: "MAKE GRID"
+      });
+
     }
   }
 
@@ -132,7 +141,7 @@ class Grid extends Component {
                   <ColorPicker onDefaultColor={(...args) => this.onChangeColor(...args)} onChange={(...args) => this.onChangeColor(...args)} />
                   <input type="number" min="1" max="20" name="width-controller" id="width-controller" onChange={(...args) => this.onChangeWidth(...args)} placeholder="Width" />
                   <input type="number" min="1" max="20" name="height-controller" id="height-controller" onChange={(...args) => this.onChangeHeight(...args)} placeholder="Height" />
-                  <button type="button" name="controller-generate" id="controller-generate" onClick={(...args) => this.onGenerate(...args)}>MAKE GRID</button>
+                  <button type="button" name="controller-generate" id="controller-generate" className={this.state.clearGrid ? "controller-generate" : "controller-clear"} onClick={(...args) => this.onGenerate(...args)}>{this.state.gridbuttontxt}</button>
                   <button type="button" name="controller-delete" id="controller-delete" onClick={(...args) => this.onDelete(...args)}>DELETE</button>
                 </div>
               </div>
